@@ -1,0 +1,76 @@
+﻿@model RegistrationRequestDto
+
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden;">
+            <div class="card-body p-5 text-center">
+                <h2 class="fw-bold text-white mb-3">Hesabınızı Oluşturun</h2>
+                <p class="text-light mb-4">Başlamak için bize katılın</p>
+
+                <form method="post">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="Email" class="form-control rounded-pill border-0 shadow-sm"
+                                   placeholder="Email" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="Email" class="text-white">E-mail</label>
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="Name" class="form-control rounded-pill border-0 shadow-sm"
+                                   placeholder="Name" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="Name" class="text-white">İsim</label>
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="PhoneNumber" class="form-control rounded-pill border-0 shadow-sm"
+                                   placeholder="Phone Number" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="PhoneNumber" class="text-white">Telefon No</label>
+                        </div>
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="Password" class="form-control rounded-pill border-0 shadow-sm"
+                                   placeholder="Password" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="Password" class="text-white">Şifre</label>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <select asp-for="Role" class="form-select rounded-pill border-0 shadow-sm"
+                                    style="background: rgba(255, 255, 255, 0.2); color: white;" asp-items="@ViewBag.RoleList">
+                                <option disabled selected>--Select Role--</option>
+                            </select>
+                            <label asp-for="Role" class="text-white">Rol</label>
+                        </div>
+                        <span asp-validation-for="Role" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-light btn-lg rounded-pill w-100 fw-bold shadow-sm"
+                            style="background: linear-gradient(45deg, #ff9a9e, #fad0c4); border: none; transition: 0.3s;">
+                        Kayıt olmak
+                    </button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <p class="text-light mb-0">
+                        Zaten bir hesabınız var mı? <a href="#" class="text-light text-decoration-none">Giriş Yap</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

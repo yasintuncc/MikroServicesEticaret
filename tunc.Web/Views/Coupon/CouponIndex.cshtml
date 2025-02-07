@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CouponDto>
+
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-lg" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden;">
+            <div class="card-body p-5 text-center text-white">
+                <h3 class="fw-bold mb-3">Kupon Listesi</h3>
+                <hr class="border-light" />
+                <div class="d-flex justify-content-end mb-3">
+                    <a asp-action="CouponCreate" class="btn btn-outline-light btn-lg rounded-pill fw-bold shadow-sm"
+                       style="background: linear-gradient(45deg, #6a11cb, #2575fc); border: none; transition: 0.3s;">
+                        <i class="bi bi-plus-square"></i> Yeni Kupon Oluştur
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover text-white rounded-3 overflow-hidden">
+                        <thead class="bg-gradient">
+                            <tr>
+                                <th>Kupon Kodu</th>
+                                <th> İndirim Tutarı</th>
+                                <th>Minimum Tutar</th>
+                                <th>Eylem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.CouponCode</td>
+                                    <td>@((item.DiscountAmount).ToString("c"))</td>
+                                    <td>@((item.MinAmount).ToString("c"))</td>
+                                    <td>
+                                        <a asp-action="CouponDelete" asp-route-couponId="@item.CouponId" class="btn btn-danger btn-sm rounded-pill shadow-sm"
+                                           style="background: linear-gradient(45deg, #ff758c, #ff7eb3); border: none; transition: 0.3s;">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

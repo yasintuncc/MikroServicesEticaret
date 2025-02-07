@@ -1,0 +1,66 @@
+﻿@using tunc.Web.Models
+@model ProductDto
+
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden;">
+            <div class="card-body p-5 text-center">
+                <h2 class="fw-bold text-white mb-3">ÜRÜN OLUŞTUR</h2>
+                <p class="text-light mb-4">Aşağıdaki ayrıntıları doldurun</p>
+
+                <form asp-action="ProductCreate" enctype="multipart/form-data" method="post">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="Name" class="form-control rounded-pill border-0 shadow-sm" placeholder="Product Name" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="Name" class="text-white">ÜRÜN İSMİ</label>
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="CategoryName" class="form-control rounded-pill border-0 shadow-sm" placeholder="Category Name" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="CategoryName" class="text-white">CATEGORİ İSMİ</label>
+                        </div>
+                        <span asp-validation-for="CategoryName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea asp-for="Description" class="form-control rounded-pill border-0 shadow-sm" placeholder="Description" rows="3" style="background: rgba(255, 255, 255, 0.2); color: white;"></textarea>
+                            <label asp-for="Description" class="text-white">Tanım</label>
+                        </div>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="Price" class="form-control rounded-pill border-0 shadow-sm" placeholder="Price" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="Price" class="text-white">Fiyat</label>
+                        </div>
+                        <span asp-validation-for="Price" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="text-white">Ürün Resmi</label>
+                        <input asp-for="Image" class="form-control border-0 shadow-sm" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                        <input asp-for="ImageUrl" hidden class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-light btn-lg rounded-pill w-100 fw-bold shadow-sm" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4); border: none; transition: 0.3s;">
+                        Ürün Oluştur
+                    </button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <a asp-action="ProductIndex" class="text-light text-decoration-none">Listeye Geri Dön</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

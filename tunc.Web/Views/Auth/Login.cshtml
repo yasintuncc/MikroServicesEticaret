@@ -1,0 +1,60 @@
+﻿@model LoginRequestDto
+
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+    <div class="col-md-5 col-lg-4">
+        <div class="card border-0 shadow-lg" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden;">
+            <div class="card-body p-5 text-center">
+                <h2 class="fw-bold text-white mb-3">HOŞGELDİNİZ</h2>
+                <p class="text-light mb-4">Devam etmek için oturum açın</p>
+
+                <form method="post">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="UserName" class="form-control rounded-pill border-0 shadow-sm"
+                                   placeholder="Username" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="UserName" class="text-white">Kullanıcı adı</label>
+                        </div>
+                        <span asp-validation-for="UserName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <input asp-for="Password" type="password" class="form-control rounded-pill border-0 shadow-sm"
+                                   placeholder="Password" style="background: rgba(255, 255, 255, 0.2); color: white;">
+                            <label asp-for="Password" class="text-white">Şifre</label>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-light btn-lg rounded-pill w-100 fw-bold shadow-sm"
+                            style="background: linear-gradient(45deg, #ff9a9e, #fad0c4); border: none; transition: 0.3s;">
+                        Giriş Yap
+                    </button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <p class="text-light mb-2">ile devam et</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#" class="btn btn-outline-light rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer border-0 bg-transparent text-center py-3">
+                <p class="text-white mb-0">Hesabınız yok mu?<a asp-controller="Auth" asp-action="Register" class="text-light text-decoration-none">Üye Ol</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+}

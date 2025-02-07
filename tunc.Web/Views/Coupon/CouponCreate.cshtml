@@ -1,0 +1,43 @@
+﻿@model CouponDto
+
+<form asp-action="CouponCreate">
+    <div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden;">
+                <div class="card-body p-5 text-center text-white">
+                    <h3 class="fw-bold mb-3">Kupon Oluştur</h3>
+                    <hr class="border-light" />
+                    <div class="text-start">
+                        <div class="mb-3">
+                            <label class="form-label">Kupon Kodu</label>
+                            <input asp-for="CouponCode" class="form-control rounded-3" placeholder="Enter coupon code..." />
+                            <span asp-validation-for="CouponCode" class="text-danger small"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                İndirim Tutarı</label>
+                            <input asp-for="DiscountAmount" class="form-control rounded-3" placeholder="Enter discount amount..." />
+                            <span asp-validation-for="DiscountAmount" class="text-danger small"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Minimum İndirim</label>
+                            <input asp-for="MinAmount" class="form-control rounded-3" placeholder="Enter minimum amount..." />
+                            <span asp-validation-for="MinAmount" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="mt-4 d-flex justify-content-between">
+                        <a asp-action="CouponIndex" class="btn btn-outline-light">Listeye Geri Dön</a>
+                        <button type="submit" class="btn btn-light btn-lg rounded-pill fw-bold shadow-sm"
+                                style="background: linear-gradient(45deg, #ff9a9e, #fad0c4); border: none; transition: 0.3s;">
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

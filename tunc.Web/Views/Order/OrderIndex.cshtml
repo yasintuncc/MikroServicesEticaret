@@ -1,0 +1,62 @@
+﻿@{
+    var status = Context.Request.Query["status"];
+    var approved = "";
+    var readyforpickup = "";
+    var cancelled = "";
+    var all = "";
+
+    switch (status)
+    {
+        case "approved":
+            approved = "active text-white bg-secondary";
+            break;
+        case "readyforpickup":
+            readyforpickup = "active text-white bg-secondary";
+            break;
+        case "cancelled":
+            cancelled = "active text-white bg-secondary";
+            break;
+        default:
+            all = "active text-white bg-secondary";
+            break;
+    }
+}
+
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+    <div class="col-md-8 col-lg-6">
+        <div class="card border-0 shadow-lg" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden;">
+            <div class="card-header bg-dark text-light text-center py-4">
+                <h1 class="fw-bold">Order List</h1>
+                <ul class="list-group list-group-horizontal-sm pt-2 d-flex justify-content-center">
+                    <a href="#" class="list-group-item @approved">Approved</a>
+                    <a href="#" class="list-group-item @readyforpickup">Ready for Pickup</a>
+                    <a href="#" class="list-group-item @cancelled">Cancelled</a>
+                    <a href="#" class="list-group-item @all">All</a>
+                </ul>
+            </div>
+
+            <div class="card-body p-4">
+                <table id="tblData" class="table table-bordered table-striped pt-3" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table data goes here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/order.js"></script>
+}

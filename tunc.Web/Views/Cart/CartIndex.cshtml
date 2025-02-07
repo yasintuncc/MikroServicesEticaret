@@ -1,0 +1,88 @@
+﻿@model CartDto
+@if (Model.CartHeader != null && Model.CartDetails?.Count() > 0)
+{
+    <form method="post" asp-action="EmailCart">
+        <input asp-for="CartHeader.UserId" hidden />
+        <input asp-for="CartHeader.CartHeaderId" hidden />
+
+        <div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+            <div class="col-md-8 col-lg-7">
+                <div class="card border-0 shadow-lg" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden;">
+                    <div class="card-body p-5 text-center">
+                        <h3 class="fw-bold text-white mb-3">
+                            <i class="bi bi-cart"></i> Alışveriş Sepeti</h3>
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-light btn-sm">Alışveriş Sepeti</a>
+                        </div>
+
+                        <div class="text-white">
+                            @foreach (var cartObj in Model.CartDetails)
+                            {
+                                <div class="row align-items-center border-bottom pb-3 mb-3">
+                                    <div class="col-3 text-center">
+                                        <img src="@cartObj.Product.ImageUrl" class="rounded" width="100%" />
+                                    </div>
+                                    <div class="col-5 text-start">
+                                        <h5 class="text-light">@cartObj.Product.Name</h5>
+                                        <p class="small">@Html.Raw(cartObj.Product.Description)</p>
+                                    </div>
+                                    <div class="col-2 text-light">
+                                        <span>@string.Format("{0:c}", cartObj.Product.Price)</span>
+                                    </div>
+                                    <div class="col-2 text-light">
+                                        <span>@cartObj.Count</span>
+                                    </div>
+                                    <div class="col-12 mt-2 text-center">
+                                        <a asp-action="Remove" asp-route-cartDetailsId="@cartObj.CartDetailsId" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="mt-4">
+                            @if (string.IsNullOrEmpty(Model.CartHeader.CouponCode))
+                            {
+                                <div class="d-flex justify-content-center">
+                                    <input asp-for="CartHeader.CouponCode" class="form-control w-50" placeholder="Enter Coupon Code" />
+                                    <button type="submit" asp-action="ApplyCoupon" class="btn btn-sm btn-success ms-2">Uygula</button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex justify-content-center">
+                                    <input asp-for="CartHeader.CouponCode" class="form-control w-50" disabled />
+                                    <button type="submit" asp-action="RemoveCoupon" class="btn btn-sm btn-danger ms-2">Sİl</button>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="text-white mt-4">
+                            <h5>Order Total: @string.Format("{0:c}", Model.CartHeader.CartTotal)</h5>
+                            @if (Model.CartHeader.Discount > 0)
+                            {
+                                <h6 class="text-success">Order Discount: @string.Format("{0:c}", Model.CartHeader.Discount)</h6>
+                            }
+                            <h6 class="text-info">Shipping Fee: @string.Format("{0:c}", Model.CartHeader.ShippingFee)</h6>
+                        </div>
+
+                        <div class="mt-4">
+                            <a asp-action="Checkout" class="btn btn-light btn-lg rounded-pill fw-bold shadow-sm"
+                               style="background: linear-gradient(45deg, #ff9a9e, #fad0c4); border: none; transition: 0.3s;">
+                                Çıkışa Git
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div class="text-center text-white vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+        <h4>Sepetiniz Şuan boş. Alışverişe devam etmek için lütfen ürün ekleyin.</h4>
+    </div>
+}
